@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/ln_income"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_gravity="top"
+            android:id="@+id/txt_price"
+            android:contentDescription="text yang isinya jumlah pendapatan"
+            style="@style/TextStyle.Title"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/_13ssp"
+            tools:text="Rp300.000"/>
+        <TextView
+            android:layout_gravity="top"
+            style="@style/TextStyle.Text"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/_10ssp"
+            android:text="@string/pendapatantot"/>
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,272 @@
+<resources>
+    <string name="app_name">Buruh ID Mitra</string>
+
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="akun">Account</string>
+    <string name="payment">Payment</string>
+    <string name="order">Order</string>
+    <string name="buruh_id">Buruh id</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="doesn_t_have_account_yet">Doesn\'t have account yet?</string>
+    <string name="name">Name</string>
+    <string name="phone">Phone Number</string>
+    <string name="agree_with">Agree with</string>
+    <string name="term_and_condition">Term and Condition</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="retype">Re-type Password</string>
+    <string name="valid_email">Please enter a valid email address</string>
+    <string name="cant_empty">Field can\'t be empty!</string>
+    <string name="doesnt_match">Must match as password!</string>
+    <string name="password_must_contains">Password min 8 character and must contains number, lowercase, uppercase</string>
+    <string name="valid_number">Please enter a valid number</string>
+    <string name="not_checked">Must be checked to continue</string>
+    <string name="select_worker">Select Worker</string>
+    <string name="individu_worker">Individu Worker</string>
+    <string name="team_worker">Team Worker</string>
+    <string name="whats_new">Whats New?</string>
+    <string name="pendapat">What do you think about Buruh ID?</string>
+    <string name="isi_pendapat">We always try to give the best to our customers, your criticism and suggestions mean a lot to us</string>
+    <string name="your_order">Your Order</string>
+    <string name="history">History</string>
+    <string name="bill">Bill</string>
+    <string name="welcome_back">Welcome back</string>
+    <string name="profiles">Profile</string>
+    <string name="logout">Logout</string>
+    <string name="edit_name">Change name</string>
+    <string name="edit_email">Change email</string>
+    <string name="change">Change</string>
+    <string name="change_photo">Change photo</string>
+    <string name="change_phone_number">Change phone number</string>
+    <string name="change_password">Change password</string>
+    <string name="img">img_select</string>
+    <string name="your_plan">Your Plan</string>
+    <string name="wrong_time">Work can only start from 08:00 to 15.00!</string>
+    <string name="worng_end_date">Can\'t end work at this time!</string>
+    <string name="type_of_worker">Type of worker</string>
+    <string name="amount_of_worker">Amount of worker</string>
+    <string name="start_dateawto">Start date(Auto)</string>
+    <string name="start_date">Start date</string>
+    <string name="start_hour">Start hour</string>
+    <string name="city">District/City</string>
+    <string name="address">Address</string>
+    <string name="name_of_worker">Name of worker</string>
+    <string name="job_description">Job description</string>
+    <string name="select_frequency">Select Frequency</string>
+    <string name="end_date">End date</string>
+    <string name="total_days">Total days</string>
+    <string name="location">Location</string>
+    <string name="worker">Worker</string>
+    <string name="make_order">Make Order</string>
+    <string name="msg_order_success_title">Your Order has been successfull, Wait confirmation from our Worker</string>
+    <string name="msg_order_success_desc">Your order has been proccessed, please stay and wait confirmation from our worker, we will give you notification about it, Cheers !</string>
+    <string name="done">Done</string>
+    <string name="cek_internet">Check your network!</string>
+    <string name="suc_logout">Logout success!</string>
+    <string name="something_wrong">Something wrong!</string>
+    <string name="total_payment">Total Payment</string>
+    <string name="sub_districts">Sub-districts</string>
+    <string name="lengkapi">Complete your data!</string>
+    <string name="pleasecekorder">Please check your order again!</string>
+    <string name="village">Village</string>
+    <string name="server_error">Server error!</string>
+    <string name="re_type_new_password">Re-type New Password</string>
+    <string name="new_password">New Password</string>
+    <string name="code_payment">Code payment</string>
+    <string name="status_payment">Status payment</string>
+    <string name="no_worker_selected">No worker selected</string>
+    <string name="fill_all">Please fill all of the form!</string>
+    <string name="change_name">Change name</string>
+    <string name="change_email">Change email</string>
+    <string name="ordercancel">Order canceled!</string>
+    <string name="sure_cancel">Are you sure want to cancel?</string>
+    <string name="cancel_order">Cancel Order</string>
+    <string name="order_details">Order Details</string>
+    <string name="payment_details">Payment Details</string>
+    <string name="payment_code">Payment code</string>
+    <string name="help">Help</string>
+    <string name="pay">Pay</string>
+    <string name="proofofpayment">Proof of payment</string>
+    <string name="min_trans">Minimum transaction</string>
+    <string name="disc">Discount</string>
+    <string name="proses">On process...</string>
+    <string name="order_code">Order code</string>
+    <string name="history_order_details">History Order Details</string>
+    <string name="promotion">Promotion</string>
+    <string name="finish_order">Finish order</string>
+    <string name="sure_finish">Are you sure want to finish?</string>
+    <string name="people">People</string>
+    <string name="day">day</string>
+    <string name="days">days</string>
+    <string name="are_logout">Are you sure want to logout?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="pp">Photo profile</string>
+    <string name="del_pho">Delete photo</string>
+    <string name="want_del">Are you sure want delete?</string>
+    <string name="bugfix">Bug Fixed</string>
+    <string name="up_virus">Update Covid-19</string>
+    <string name="fix_bug">Fix a bug</string>
+    <string name="info_virus">Indonesia virus info</string>
+    <string name="secure_transc">Secured Transaction</string>
+    <string name="howTouse">How to use</string>
+    <string name="aboud_us">About us</string>
+    <string name="plz_gv_rat">Please give a rating!</string>
+    <string name="tim_work">Team worker :</string>
+    <string name="wait_confirm">Waiting confirmation from worker...</string>
+    <string name="order_acc">Order accepted!, waiting to start job...</string>
+    <string name="workinggg">Working...</string>
+    <string name="canceled">Canceled!</string>
+    <string name="fin">Finish!</string>
+    <string name="wait_pay">Waiting for payment..</string>
+    <string name="acc_t_work">Accepted to workers</string>
+    <string name="rejectedd">Rejected! Please send clear proof of payment!</string>
+    <string name="work_until">Work until</string>
+    <string name="acc_t_bID">Accepted to Buruh ID</string>
+    <string name="created">Created</string>
+    <string name="change_language">Change language</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="orderr_codee">Order code:</string>
+    <string name="workuntil">Work until</string>
+    <string name="call">Call</string>
+    <string name="message">Message</string>
+    <string name="msg_n">The content you are looking for is not available or your connection is not stable, please refresh the page</string>
+    <string name="terkonfirmasi">Confirmed</string>
+    <string name="sembuh">Recover</string>
+    <string name="dalam_perawatan">In care</string>
+    <string name="meninggal">Died</string>
+    <string name="cucitangan">Hand Wash</string>
+    <string name="tetapdirumah">Stay at Home</string>
+    <string name="pakaimasker">Wear the Mask</string>
+    <string name="socialdistancing">Keep Distance</string>
+    <string name="jagakebersihan">Keep Clean</string>
+    <string name="hindariberkumpul">Avoid Gathering</string>
+    <string name="covidd">Covid-19</string>
+    <string name="servererrorr">Server error, please refresh page!</string>
+    <string name="nointernett">Connection lost, please refresh page!</string>
+    <string name="blm_order">You have not placed an order at all, let\'s start your project!</string>
+    <string name="blmnotif">No notifications yet, let\'s start your project!</string>
+    <string name="blmpromo">No promos yet, wait for the prom!</string>
+    <string name="blmadamitra">Well, I\'m sorry your area doesn\'t have any of our partners</string>
+    <string name="desc_about">is a platform made by the children of the nation that is devoted to making it easier for construction workers to find work and to make it easier for people to find the best workers for their projects </string>
+    <string name="call_us">Call us</string>
+    <string name="any_question">Any question?</string>
+    <string name="transfer_to_bank_account">Transfer to Bank Account:</string>
+    <string name="how_to_transfer">How to transfer</string>
+    <string name="tutor_transs"> 1. Insert your ATM card and PIN \n2. Select the transfer menu to another bank \n3. Choose transfer to Bank BRI \n4. Enter No. account \n5. Enter the transfer amount \n6. Verify the transfer amount and No. account as per \n7. Transfer money, and upload proof of transfer to the application </string>
+    <string name="comment">Comment</string>
+    <string name="thanks">Thank you for giving us advice</string>
+    <string name="your_message">Your message...</string>
+    <string name="kritik_dan_saran"> Criticism and suggestions </string>
+    <string name="title_respon"> How satisfied are you with the system and the Buruh Id application? </string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="large_text">
+        "Material is the metaphor.\n\n"
+
+        "A material metaphor is the unifying theory of a rationalized space and a system of motion."
+        "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "
+        "technologically advanced and open to imagination and magic.\n"
+        "Surfaces and edges of the material provide visual cues that are grounded in reality. The "
+        "use of familiar tactile attributes helps users quickly understand affordances. Yet the "
+        "flexibility of the material creates new affordances that supercede those in the physical "
+        "world, without breaking the rules of physics.\n"
+        "The fundamentals of light, surface, and movement are key to conveying how objects move, "
+        "interact, and exist in space and in relation to each other. Realistic lighting shows "
+        "seams, divides space, and indicates moving parts.\n\n"
+
+        "Bold, graphic, intentional.\n\n"
+
+        "The foundational elements of print based design typography, grids, space, scale, color, "
+        "and use of imagery guide visual treatments. These elements do far more than please the "
+        "eye. They create hierarchy, meaning, and focus. Deliberate color choices, edge to edge "
+        "imagery, large scale typography, and intentional white space create a bold and graphic "
+        "interface that immerse the user in the experience.\n"
+        "An emphasis on user actions makes core functionality immediately apparent and provides "
+        "waypoints for the user.\n\n"
+
+        "Motion provides meaning.\n\n"
+
+        "Motion respects and reinforces the user as the prime mover. Primary user actions are "
+        "inflection points that initiate motion, transforming the whole design.\n"
+        "All action takes place in a single environment. Objects are presented to the user without "
+        "breaking the continuity of experience even as they transform and reorganize.\n"
+        "Motion is meaningful and appropriate, serving to focus attention and maintain continuity. "
+        "Feedback is subtle yet clear. Transitions are efﬁcient yet coherent.\n\n"
+
+        "3D world.\n\n"
+
+        "The material environment is a 3D space, which means all objects have x, y, and z "
+        "dimensions. The z-axis is perpendicularly aligned to the plane of the display, with the "
+        "positive z-axis extending towards the viewer. Every sheet of material occupies a single "
+        "position along the z-axis and has a standard 1dp thickness.\n"
+        "On the web, the z-axis is used for layering and not for perspective. The 3D world is "
+        "emulated by manipulating the y-axis.\n\n"
+
+        "Light and shadow.\n\n"
+
+        "Within the material environment, virtual lights illuminate the scene. Key lights create "
+        "directional shadows, while ambient light creates soft shadows from all angles.\n"
+        "Shadows in the material environment are cast by these two light sources. In Android "
+        "development, shadows occur when light sources are blocked by sheets of material at "
+        "various positions along the z-axis. On the web, shadows are depicted by manipulating the "
+        "y-axis only. The following example shows the card with a height of 6dp.\n\n"
+
+        "Resting elevation.\n\n"
+
+        "All material objects, regardless of size, have a resting elevation, or default elevation "
+        "that does not change. If an object changes elevation, it should return to its resting "
+        "elevation as soon as possible.\n\n"
+
+        "Component elevations.\n\n"
+
+        "The resting elevation for a component type is consistent across apps (e.g., FAB elevation "
+        "does not vary from 6dp in one app to 16dp in another app).\n"
+        "Components may have different resting elevations across platforms, depending on the depth "
+        "of the environment (e.g., TV has a greater depth than mobile or desktop).\n\n"
+
+        "Responsive elevation and dynamic elevation offsets.\n\n"
+
+        "Some component types have responsive elevation, meaning they change elevation in response "
+        "to user input (e.g., normal, focused, and pressed) or system events. These elevation "
+        "changes are consistently implemented using dynamic elevation offsets.\n"
+        "Dynamic elevation offsets are the goal elevation that a component moves towards, relative "
+        "to the component’s resting state. They ensure that elevation changes are consistent "
+        "across actions and component types. For example, all components that lift on press have "
+        "the same elevation change relative to their resting elevation.\n"
+        "Once the input event is completed or cancelled, the component will return to its resting "
+        "elevation.\n\n"
+
+        "Avoiding elevation interference.\n\n"
+
+        "Components with responsive elevations may encounter other components as they move between "
+        "their resting elevations and dynamic elevation offsets. Because material cannot pass "
+        "through other material, components avoid interfering with one another any number of ways, "
+        "whether on a per component basis or using the entire app layout.\n"
+        "On a component level, components can move or be removed before they cause interference. "
+        "For example, a floating action button (FAB) can disappear or move off screen before a "
+        "user picks up a card, or it can move if a snackbar appears.\n"
+        "On the layout level, design your app layout to minimize opportunities for interference. "
+        "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
+        "when a user tries to pick up one of cards.\n\n"
+    </string>
+    <string name="action_settings">Settings</string>
+    <string name="pendapatantot">Pendapatan Total</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="semuawaktu">Semua waktu</string>
+    <string name="bulanini">Bulan ini</string>
+    <string name="harini">Hari ini</string>
+    <string name="activee">Active  </string>
+    <string name="nonactivee">Non-Active  </string>
+    <string name="no_activities">No activity</string>
+    <string name="congratss"> Congratulations !!! \n Your account is already registered </string>
+    <string name="desc_congrats"> Your account is already registered, come to our address immediately within 3 days on Jl. Kapuk estuary No.90 North Jakarta, to confirm and bring your personal data such as ID card and KK, to activate your account </string>
+    <string name="statuschanged">Status changed!</string>
+</resources>

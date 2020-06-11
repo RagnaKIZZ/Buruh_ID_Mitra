@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_200sdp"
+            android:fitsSystemWindows="true">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bg1" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_160sdp"
+                android:layout_below="@id/app_bar"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:layout_width="@dimen/_120sdp"
+                    android:layout_height="@dimen/_120sdp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_20sdp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fitsSystemWindows="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/bg_img_profiles" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginBottom="@dimen/_4sdp">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/img_account"
+                            android:layout_width="@dimen/_100sdp"
+                            android:layout_height="@dimen/_100sdp"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/blank_profile"
+                            android:transitionName="@string/img"
+                            app:civ_border_color="@android:color/white"
+                            app:civ_border_width="@dimen/_4sdp" />
+
+                        <ProgressBar
+                            android:id="@+id/progress_bar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true" />
+                    </RelativeLayout>
+                </FrameLayout>
+
+
+            </RelativeLayout>
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/app_bar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/toolbar_bg"
+                app:elevation="0dp">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+            </com.google.android.material.appbar.AppBarLayout>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:orientation="vertical">
+
+            <com.xw.repo.widget.BounceScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:fontFamily="@font/open_sans"
+                        android:text="@string/profiles"
+                        android:textColor="@color/color_payment"
+                        android:textSize="@dimen/_15sdp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txt_name_account"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:drawableStart="@drawable/ic_account_circle_black_24dp"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/open_sans"
+                        android:maxLength="25"
+                        android:maxLines="1"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold"
+                        tools:text="ilham" />
+
+
+                    <TextView
+                        android:id="@+id/txt_email_account"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:drawableStart="@drawable/ic_email_black_24dp"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/open_sans"
+                        android:maxLength="40"
+                        android:maxLines="1"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold"
+                        tools:text="ilham@gmail.com" />
+
+                    <TextView
+                        android:id="@+id/txt_phone_account"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:drawableStart="@drawable/ic_phone_black_24dp"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:fontFamily="@font/open_sans"
+                        android:maxLength="14"
+                        android:maxLines="1"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold"
+                        tools:text="08781213131" />
+
+                    <TextView
+                        android:id="@+id/txt_location_account"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:drawableStart="@drawable/ic_location_on_blacka24dp"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:fontFamily="@font/open_sans"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold"
+                        tools:text="jl. kamal raya no 24, cengkareng, jakarta timur" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:fontFamily="@font/open_sans"
+                        android:text="Rating"
+                        android:textColor="@color/color_payment"
+                        android:textSize="@dimen/_15sdp"
+                        android:textStyle="bold" />
+
+                    <androidx.appcompat.widget.AppCompatRatingBar
+                        android:id="@+id/rating_sheet"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:enabled="false"
+                        android:numStars="5"
+                        android:stepSize="0.1"
+                        tools:rating="3" />
+
+                    <TextView
+                        android:id="@+id/txt_rating_account"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:fontFamily="@font/open_sans"
+                        android:maxLines="1"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="@dimen/_10sdp"
+                        android:textStyle="bold"
+                        tools:text="(4.0, keep up your good work)" />
+
+                    <Button
+                        android:id="@+id/btn_location_account"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_marginStart="@dimen/_30sdp"
+                        android:layout_marginTop="@dimen/_50sdp"
+                        android:layout_marginEnd="@dimen/_30sdp"
+                        android:background="@drawable/bg_button"
+                        android:fontFamily="@font/open_sans"
+                        android:padding="@dimen/_5sdp"
+                        android:paddingStart="@dimen/_20sdp"
+                        android:paddingEnd="@dimen/_20sdp"
+                        android:text="Edit Location"
+                        android:textAllCaps="false"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/_12ssp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/btn_logout_account"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_marginStart="@dimen/_30sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_30sdp"
+                        android:background="@drawable/bg_logout"
+                        android:fontFamily="@font/open_sans"
+                        android:padding="@dimen/_5sdp"
+                        android:paddingStart="@dimen/_20sdp"
+                        android:paddingEnd="@dimen/_20sdp"
+                        android:text="@string/logout"
+                        android:textAllCaps="false"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/_12ssp"
+                        android:layout_marginBottom="@dimen/_40sdp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </com.xw.repo.widget.BounceScrollView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
