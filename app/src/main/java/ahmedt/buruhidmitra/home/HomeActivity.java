@@ -253,12 +253,16 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 getPendapatan();
+                getActivities();
+                getLastActivities();
             }
         });
 
         fabRefreshHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                getPendapatan();
+                getActivities();
                 getLastActivities();
             }
         });
@@ -266,7 +270,9 @@ public class HomeActivity extends AppCompatActivity {
         fabRefreshActivities.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                getPendapatan();
                 getActivities();
+                getLastActivities();
             }
         });
     }
@@ -409,6 +415,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private void getLastActivities() {
         lastList.clear();
+        lnInclude.setVisibility(View.GONE);
         progbarHistory.setVisibility(View.VISIBLE);
         AndroidNetworking.post(UrlClass.URL_LAST_ACTIVITIES)
                 .addBodyParameter("id", Prefs.getString(SessionPrefs.U_ID, ""))

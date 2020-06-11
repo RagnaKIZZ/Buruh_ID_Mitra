@@ -1,102 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
 
-    <LinearLayout
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="?attr/actionBarSize"
         android:layout_alignParentTop="true"
-        android:fitsSystemWindows="true"
-        android:orientation="vertical">
+        android:background="@color/colorPrimary"
+        app:elevation="0dp">
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/_200sdp"
-            android:fitsSystemWindows="true">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fitsSystemWindows="true"
-                android:scaleType="centerCrop"
-                android:src="@drawable/bg1" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_160sdp"
-                android:layout_below="@id/app_bar"
-                android:orientation="horizontal">
-
-                <FrameLayout
-                    android:layout_width="@dimen/_120sdp"
-                    android:layout_height="@dimen/_120sdp"
-                    android:layout_centerInParent="true"
-                    android:layout_marginStart="@dimen/_20sdp"
-                    android:layout_marginTop="@dimen/_20sdp">
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:fitsSystemWindows="true"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/bg_img_profiles" />
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="@dimen/_5sdp"
-                        android:layout_marginBottom="@dimen/_4sdp">
-
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/img_account"
-                            android:layout_width="@dimen/_100sdp"
-                            android:layout_height="@dimen/_100sdp"
-                            android:layout_centerInParent="true"
-                            android:src="@drawable/blank_profile"
-                            android:transitionName="@string/img"
-                            app:civ_border_color="@android:color/white"
-                            app:civ_border_width="@dimen/_4sdp" />
-
-                        <ProgressBar
-                            android:id="@+id/progress_bar"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true" />
-                    </RelativeLayout>
-                </FrameLayout>
-
-
-            </RelativeLayout>
-
-            <com.google.android.material.appbar.AppBarLayout
-                android:id="@+id/app_bar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:layout_alignParentTop="true"
-                android:background="@drawable/toolbar_bg"
-                app:elevation="0dp">
-
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
-            </com.google.android.material.appbar.AppBarLayout>
-
-        </RelativeLayout>
-
-        <LinearLayout
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/white"
-            android:orientation="vertical">
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+    </com.google.android.material.appbar.AppBarLayout>
 
             <com.xw.repo.widget.BounceScrollView
+                android:layout_below="@id/app_bar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -104,6 +31,42 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
+                    <FrameLayout
+                        android:layout_width="@dimen/_120sdp"
+                        android:layout_height="@dimen/_120sdp"
+                       android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/_30sdp">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:fitsSystemWindows="true"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/bg_img_profiles" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_marginBottom="@dimen/_4sdp">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/img_account"
+                                android:layout_width="@dimen/_95sdp"
+                                android:layout_height="@dimen/_95sdp"
+                                android:layout_centerInParent="true"
+                                android:src="@drawable/blank_profile"
+                                android:transitionName="@string/img"
+                                app:civ_border_color="@color/colorAccent"
+                                app:civ_border_width="@dimen/_4sdp" />
+
+                            <ProgressBar
+                                android:id="@+id/progress_bar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true" />
+                        </RelativeLayout>
+                    </FrameLayout>
 
                     <TextView
                         android:layout_width="match_parent"
@@ -135,13 +98,30 @@
                         android:textStyle="bold"
                         tools:text="ilham" />
 
+                    <TextView
+                        android:id="@+id/txt_anggota_account"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:drawableStart="@drawable/ic_person_black_24dp"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/open_sans"
+                        android:maxLength="25"
+                        android:maxLines="1"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold"
+                        tools:text="@string/individu_worker" />
 
                     <TextView
                         android:id="@+id/txt_email_account"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_20sdp"
-                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
                         android:layout_marginEnd="@dimen/_20sdp"
                         android:drawableStart="@drawable/ic_email_black_24dp"
                         android:drawablePadding="@dimen/_10sdp"
@@ -159,7 +139,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_20sdp"
-                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
                         android:layout_marginEnd="@dimen/_20sdp"
                         android:drawableStart="@drawable/ic_phone_black_24dp"
                         android:drawablePadding="@dimen/_10sdp"
@@ -219,7 +199,7 @@
                         android:maxLines="1"
                         android:textAlignment="center"
                         android:textColor="@android:color/darker_gray"
-                        android:textSize="@dimen/_10sdp"
+                        android:textSize="@dimen/_8sdp"
                         android:textStyle="bold"
                         tools:text="(4.0, keep up your good work)" />
 
@@ -229,7 +209,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:layout_marginStart="@dimen/_30sdp"
-                        android:layout_marginTop="@dimen/_50sdp"
+                        android:layout_marginTop="@dimen/_30sdp"
                         android:layout_marginEnd="@dimen/_30sdp"
                         android:background="@drawable/bg_button"
                         android:fontFamily="@font/open_sans"
@@ -250,6 +230,7 @@
                         android:layout_marginStart="@dimen/_30sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_marginEnd="@dimen/_30sdp"
+                        android:layout_marginBottom="@dimen/_40sdp"
                         android:background="@drawable/bg_logout"
                         android:fontFamily="@font/open_sans"
                         android:padding="@dimen/_5sdp"
@@ -259,13 +240,8 @@
                         android:textAllCaps="false"
                         android:textColor="@android:color/black"
                         android:textSize="@dimen/_12ssp"
-                        android:layout_marginBottom="@dimen/_40sdp"
                         android:textStyle="bold" />
                 </LinearLayout>
             </com.xw.repo.widget.BounceScrollView>
 
-        </LinearLayout>
-
-    </LinearLayout>
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</RelativeLayout>

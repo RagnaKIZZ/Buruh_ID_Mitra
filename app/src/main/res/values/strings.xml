@@ -118,7 +118,7 @@
     <string name="howTouse">How to use</string>
     <string name="aboud_us">About us</string>
     <string name="plz_gv_rat">Please give a rating!</string>
-    <string name="tim_work">Team worker :</string>
+    <string name="tim_work">Team worker: </string>
     <string name="wait_confirm">Waiting confirmation from worker...</string>
     <string name="order_acc">Order accepted!, waiting to start job...</string>
     <string name="workinggg">Working...</string>
@@ -269,4 +269,7 @@
     <string name="congratss"> Congratulations !!! \n Your account is already registered </string>
     <string name="desc_congrats"> Your account is already registered, come to our address immediately within 3 days on Jl. Kapuk estuary No.90 North Jakarta, to confirm and bring your personal data such as ID card and KK, to activate your account </string>
     <string name="statuschanged">Status changed!</string>
+    <string name="keepup">Keep up your good work!</string>
+    <string name="moreactive">You should be more active!</string>
+    <string name="tellmee">What is wrong with you? tell me your problem</string>
 </resources>
