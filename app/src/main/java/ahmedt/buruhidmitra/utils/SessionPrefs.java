@@ -27,6 +27,6 @@ public class SessionPrefs {
 
 
 
-
+    public static final int RESUL_NOTIF = 999;
     public static String NOTIF_COUNT = "notif";
 }

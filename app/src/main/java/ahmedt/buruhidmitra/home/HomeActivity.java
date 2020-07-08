@@ -1,7 +1,14 @@
 package ahmedt.buruhidmitra.home;
 
 import android.app.ActivityOptions;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,15 +26,19 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import com.kaopiz.kprogresshud.KProgressHUD;
 import com.pixplicity.easyprefs.library.Prefs;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.NotificationCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
@@ -44,8 +55,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 
+import ahmedt.buruhidmitra.FirebaseMessagingService;
 import ahmedt.buruhidmitra.R;
+import ahmedt.buruhidmitra.home.countnotif.CountNotifModel;
 import ahmedt.buruhidmitra.home.modelactivities.ActivitiesModel;
 import ahmedt.buruhidmitra.home.modelactivities.Data;
 import ahmedt.buruhidmitra.home.modelhistory.DataItem;
@@ -53,6 +67,8 @@ import ahmedt.buruhidmitra.home.modelhistory.LastActivitiesModel;
 import ahmedt.buruhidmitra.home.tablayoutprice.ScreenItem;
 import ahmedt.buruhidmitra.home.tablayoutprice.TabPagerAdapter;
 import ahmedt.buruhidmitra.home.tablayoutprice.modeprice.PriceModel;
+import ahmedt.buruhidmitra.notification.DetailNotifikasi.DetailNotifActivity;
+import ahmedt.buruhidmitra.notification.NotificationActivity;
 import ahmedt.buruhidmitra.profile.ProfileActivity;
 import ahmedt.buruhidmitra.utils.HelperClass;
 import ahmedt.buruhidmitra.utils.SessionPrefs;
@@ -75,12 +91,14 @@ public class HomeActivity extends AppCompatActivity {
     private RelativeLayout rlActivities, rlMsg;
     private LinearLayout lnInclude;
     private ImageView imgTukang, imgMsg;
-    private TextView txtMsgAct, txtNamaCustomer, txtTgl, txtLokasi, txtHarga, txtName, txtMsg;
+    private TextView txtMsgAct, txtNamaCustomer, txtTgl, txtLokasi, txtHarga, txtName, txtMsg, txtBadgeNotif;
     private CardView cvActivities;
     Locale locale;
     NumberFormat format;
     double semua = 0, bulan = 0, hari = 0;
-    int paramAct = 1;
+    int paramAct = 1, countNotif = 0;
+    String nama, telepon, id_order, code_order, alamat, jobdesk, harga, orderdate, startdate, enddate, statusorder, statusPem, id;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,15 +129,74 @@ public class HomeActivity extends AppCompatActivity {
                 }
             }
         });
-        Prefs.putString(SessionPrefs.isLogin, "1");
         findView();
+        LocalBroadcastManager.getInstance(HomeActivity.this).registerReceiver(updateBadge, new IntentFilter(FirebaseMessagingService.INFO_UPDATE));
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        LocalBroadcastManager.getInstance(HomeActivity.this).unregisterReceiver(updateBadge);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        countNotif = Prefs.getInt(SessionPrefs.NOTIF_COUNT, 0);
+        setupBadgeNotif();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_home, menu);
+        final MenuItem notifItem = menu.findItem(R.id.action_notification);
+        View actionNotif = notifItem.getActionView();
+        txtBadgeNotif = (TextView) actionNotif.findViewById(R.id.notif_badge);
+        actionNotif.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onOptionsItemSelected(notifItem);
+            }
+        });
+        setupBadgeNotif();
         return super.onCreateOptionsMenu(menu);
     }
+
+    private void setupBadgeNotif() {
+        if (txtBadgeNotif != null) {
+            if (countNotif == 0) {
+                if (txtBadgeNotif.getVisibility() != View.GONE) {
+                    txtBadgeNotif.setVisibility(View.GONE);
+                }
+            } else {
+                txtBadgeNotif.setText(String.valueOf(Math.min(countNotif, 99)));
+                if (txtBadgeNotif.getVisibility() != View.VISIBLE) {
+                    txtBadgeNotif.setVisibility(View.VISIBLE);
+                }
+            }
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_notification:
+                startActivity(new Intent(HomeActivity.this, NotificationActivity.class));
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+
+    }
+
+    private BroadcastReceiver updateBadge = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String param = FirebaseMessagingService.INFO_UPDATE;
+            if (intent.getAction().equals(param)) {
+                getCount(false);
+            }
+        }
+    };
 
     private void findView() {
 //        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
@@ -203,7 +280,9 @@ public class HomeActivity extends AppCompatActivity {
         lastAdapter.SetOnItemClickListener(new LastActivitiesAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position, DataItem model) {
-                Toast.makeText(HomeActivity.this, lastList.get(position).getNama(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(HomeActivity.this, LastActivitiesActivity.class);
+                intent.putExtra("data_item", lastList.get(position));
+                startActivity(intent);
             }
         });
 
@@ -211,10 +290,13 @@ public class HomeActivity extends AppCompatActivity {
         cvActivities.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (paramAct == 1){
+                if (paramAct == 1) {
                     Toast.makeText(HomeActivity.this, getString(R.string.no_activities), Toast.LENGTH_SHORT).show();
-                }else{
-
+                } else {
+                    Data data = new Data(enddate, orderdate, nama, jobdesk, harga, statusPem, code_order, telepon, statusorder, id, alamat, startdate);;
+                    Intent intent = new Intent(HomeActivity.this, ActivitiesActivity.class);
+                    intent.putExtra("data_item", data);
+                    startActivityForResult(intent, 111);
                 }
             }
         });
@@ -253,16 +335,12 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 getPendapatan();
-                getActivities();
-                getLastActivities();
             }
         });
 
         fabRefreshHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getPendapatan();
-                getActivities();
                 getLastActivities();
             }
         });
@@ -270,11 +348,28 @@ public class HomeActivity extends AppCompatActivity {
         fabRefreshActivities.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getPendapatan();
                 getActivities();
-                getLastActivities();
             }
         });
+
+        if (Prefs.getInt(SessionPrefs.NOTIF_COUNT, 0) > 0) {
+            countNotif = Prefs.getInt(SessionPrefs.NOTIF_COUNT, 0);
+        }
+
+        if (Prefs.getString(SessionPrefs.isLogin, "").isEmpty()) {
+            getCount(true);
+            Prefs.putString(SessionPrefs.isLogin, "1");
+        } else {
+            setupBadgeNotif();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            getActivities();
+        }
     }
 
     private void getPendapatan() {
@@ -344,8 +439,8 @@ public class HomeActivity extends AppCompatActivity {
                                 rlActivities.setVisibility(View.VISIBLE);
                                 rlMsg.setVisibility(View.GONE);
                                 txtMsgAct.setVisibility(View.GONE);
-                                String nama, telepon, id_order, code_order, alamat, jobdesk, harga, orderdate, startdate, enddate, statusorder;
                                 nama = response.getData().getNama();
+                                statusPem = response.getData().getStatusPembayaran();
                                 telepon = response.getData().getTelepon();
                                 id_order = response.getData().getId();
                                 code_order = response.getData().getCodeOrder();
@@ -356,6 +451,7 @@ public class HomeActivity extends AppCompatActivity {
                                 orderdate = response.getData().getOrderDate();
                                 startdate = response.getData().getStartDate();
                                 enddate = response.getData().getEndDate();
+                                id = response.getData().getId();
                                 double rHarga = Double.parseDouble(harga);
                                 double realHarga = rHarga - (rHarga * 0.1);
                                 txtNamaCustomer.setText(nama);
@@ -445,11 +541,11 @@ public class HomeActivity extends AppCompatActivity {
                                     lastList.add(items);
                                 }
                                 lastAdapter.updateList(lastList);
-                                Log.d(TAG, "onResponse: "+response.getMsg());
+                                Log.d(TAG, "onResponse: " + response.getMsg());
                                 lnInclude.setVisibility(View.GONE);
                             } else {
                                 HelperClass.emptyError(lnInclude, imgMsg, txtMsg, "Your activity history is empty");
-                                Log.d(TAG, "onResponse: "+response.getMsg());
+                                Log.d(TAG, "onResponse: " + response.getMsg());
                             }
                         }
                     }
@@ -458,15 +554,15 @@ public class HomeActivity extends AppCompatActivity {
                     public void onError(ANError anError) {
                         fabRefreshHistory.show();
                         progbarHistory.setVisibility(View.GONE);
-                        Log.d(TAG, "onError: "+anError.getErrorBody());
+                        Log.d(TAG, "onError: " + anError.getErrorBody());
                         if (anError.getErrorCode() != 0) {
                             Log.d("ERR", "onError: " + anError.getErrorDetail());
-                            HelperClass.serverError( HomeActivity.this,lnInclude, imgMsg, txtMsg);
+                            HelperClass.serverError(HomeActivity.this, lnInclude, imgMsg, txtMsg);
                         } else {
                             Log.d("ERR", "onError: " + anError.getErrorCode());
                             Log.d("ERR", "onError: " + anError.getErrorBody());
                             Log.d("ERR", "onError: " + anError.getErrorDetail());
-                            HelperClass.InetError( HomeActivity.this,lnInclude, imgMsg, txtMsg);
+                            HelperClass.InetError(HomeActivity.this, lnInclude, imgMsg, txtMsg);
                             Toasty.error(HomeActivity.this, R.string.cek_internet, Toast.LENGTH_SHORT, true).show();
                         }
                     }
@@ -491,7 +587,7 @@ public class HomeActivity extends AppCompatActivity {
                                 Toasty.success(HomeActivity.this, getString(R.string.statuschanged)).show();
                             } else {
                                 aSwitch.setChecked(checked);
-                                Toasty.error(HomeActivity.this, getString(R.string.something_wrong)).show();
+                                Toasty.warning(HomeActivity.this, response.getMsg()).show();
                             }
                         }
                     }
@@ -547,4 +643,81 @@ public class HomeActivity extends AppCompatActivity {
                     }
                 });
     }
+
+    private void getCount(final Boolean notif) {
+        AndroidNetworking.post(UrlClass.URL_COUNT)
+                .addBodyParameter("id", Prefs.getString(SessionPrefs.U_ID, ""))
+                .addBodyParameter("token", Prefs.getString(SessionPrefs.TOKEN_LOGIN, ""))
+                .build()
+                .getAsOkHttpResponseAndObject(CountNotifModel.class, new OkHttpResponseAndParsedRequestListener<CountNotifModel>() {
+                    @Override
+                    public void onResponse(Response okHttpResponse, CountNotifModel response) {
+                        if (okHttpResponse.isSuccessful()) {
+                            if (response.getCode() == 200) {
+                                Log.d(TAG, "onResponse: " + response.getCountNotif());
+                                countNotif = response.getCountNotif();
+                                Prefs.putInt(SessionPrefs.NOTIF_COUNT, response.getCountNotif());
+                                setupBadgeNotif();
+                                if (notif) {
+                                    if (response.getCountNotif() > 0) {
+                                        for (int i = 0; i < response.getData().size(); i++) {
+                                            showNotification(response.getData().get(i).getTitle(), response.getData().get(i).getMessage());
+                                        }
+                                    }
+                                }
+
+                                Log.d(TAG, "onResponse: suc= " + response.getMsg());
+                            } else {
+                                Log.d(TAG, "onResponse: badge" + response.getMsg());
+                            }
+
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        if (anError.getErrorCode() != 0) {
+                            Log.d("ERR", "onError: " + anError.getErrorDetail());
+                            Toasty.error(HomeActivity.this, R.string.server_error, Toast.LENGTH_SHORT, true).show();
+                        } else {
+                            Log.d("ERR", "onError: " + anError.getErrorCode());
+                            Log.d("ERR", "onError: " + anError.getErrorBody());
+                            Log.d("ERR", "onError: " + anError.getErrorDetail());
+                            Toasty.error(HomeActivity.this, R.string.cek_internet, Toast.LENGTH_SHORT, true).show();
+                        }
+                    }
+                });
+    }
+
+    private void showNotification(String title, String message) {
+        String NOTIFICATION_CHANNEL_ID = "my_channel_id_001";
+        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        Random rand = new Random();
+        final int notification_ID = rand.nextInt();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "My Notification", NotificationManager.IMPORTANCE_DEFAULT);
+            notificationChannel.setDescription("My Channel");
+            notificationChannel.enableLights(true);
+            notificationChannel.enableVibration(true);
+            manager.createNotificationChannel(notificationChannel);
+        }
+
+        Intent i = new Intent(this, NotificationActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent intent = PendingIntent.getActivity(this, 1, i, PendingIntent.FLAG_UPDATE_CURRENT);
+//        PendingIntent intent = TaskStackBuilder.create(this).addNextIntentWithParentStack(i).getPendingIntent(1, PendingIntent.FLAG_UPDATE_CURRENT);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID);
+        builder.setAutoCancel(true)
+                .setDefaults(Notification.DEFAULT_ALL)
+                .setSmallIcon(R.mipmap.ic_launcher_new_new)
+                .setContentTitle(title)
+                .setContentText(message)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setContentIntent(intent)
+                .setStyle(new NotificationCompat.InboxStyle().addLine(message));
+
+        manager.notify(notification_ID, builder.build());
+    }
+
+
 }

@@ -216,7 +216,7 @@
                         android:padding="@dimen/_5sdp"
                         android:paddingStart="@dimen/_20sdp"
                         android:paddingEnd="@dimen/_20sdp"
-                        android:text="Edit Location"
+                        android:text="@string/edit_profile"
                         android:textAllCaps="false"
                         android:textColor="@android:color/white"
                         android:textSize="@dimen/_12ssp"

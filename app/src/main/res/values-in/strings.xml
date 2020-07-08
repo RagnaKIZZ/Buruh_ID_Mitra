@@ -233,10 +233,11 @@
     <string name="jagakebersihan">Jaga Kebersihan</string>
     <string name="hindariberkumpul">Hindari Berkumpul</string>
     <string name="covidd">Covid-19</string>
+    <string name="title_activity_home">HomeActivity</string>
     <string name="servererrorr">server bermasalah, harap segarkan halaman!</string>
     <string name="nointernett">Koneksi terputus, harap segarkan halaman!</string>
     <string name="blm_order">Anda belum melakukan order sama sekali yuk mulai proyek anda!</string>
-    <string name="blmnotif">Belum ada notifikasi, yuk mulai proyek anda!</string>
+    <string name="blmnotif">Belum ada notifikasi, yuk mulai pekerjaan anda!</string>
     <string name="blmpromo">Belum ada promo, tunggu promonya ya!</string>
     <string name="blmadamitra">Yah, mohon maaf didaerah Anda belum tersedia mitra kami</string>
     <string name="desc_about">adalah platform buatan anak bangsa yang dikhususkan untuk memudahkan para pekerja bangunan harian dalam mencari pekerjaan dan untuk mempermudah orang-orang menemukan pekerja terbaik untuk proyek mereka</string>
@@ -267,5 +268,12 @@
     <string name = "keepup"> Pertahankan kerja bagus Anda! </string>
     <string name = "moreactive"> Anda harus lebih aktif! </string>
     <string name = "tellmee"> Apa yang salah denganmu? ceritakan masalah Anda </string>
+    <string name="change_location">Ubah lokasi</string>
+    <string name="startjob">Mulai pekerjaan</string>
+    <string name="update">Update</string>
+    <string name="nothx">Tidak, Terimakasih</string>
+    <string name="newupdate">Versi Baru Tersedia</string>
+    <string name="plzupdate">Mohon update untuk melanjutkan penggunaan</string>
+    <string name="announcebeta">Aplikasi ini adalah versi BETA, jadi beberapa fitur mungkin tidak berjalan lancar</string>
 
 </resources>

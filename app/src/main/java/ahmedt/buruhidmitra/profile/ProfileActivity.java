@@ -1,19 +1,23 @@
 package ahmedt.buruhidmitra.profile;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.app.ActivityOptions;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -41,7 +45,7 @@ public class ProfileActivity extends AppCompatActivity {
     private ImageView imgProfile;
     private ProgressBar progressBar;
     private RatingBar ratingBar;
-    private Button btnLogout;
+    private Button btnLogout, btnChange;
     private static final String TAG = "ProfileActivity";
 
     @Override
@@ -63,6 +67,7 @@ public class ProfileActivity extends AppCompatActivity {
         ratingBar = findViewById(R.id.rating_sheet);
         btnLogout = findViewById(R.id.btn_logout_account);
         progressBar.setVisibility(View.GONE);
+        btnChange = findViewById(R.id.btn_location_account);
         txtName.setText(Prefs.getString(SessionPrefs.NAMA, ""));
         txtEmail.setText(Prefs.getString(SessionPrefs.EMAIL, ""));
         txtPhone.setText(Prefs.getString(SessionPrefs.TELEPON, ""));
@@ -127,6 +132,22 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+        btnChange.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogEditProfile();
+            }
+        });
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            String extra = data.getStringExtra("extra");
+            txtLocation.setText(extra);
+        }
     }
 
     @Override
@@ -139,6 +160,48 @@ public class ProfileActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
         return true;
+    }
+
+    private void dialogEditProfile() {
+            final Dialog dialog = new Dialog(ProfileActivity.this);
+            dialog.setContentView(R.layout.dialog_edit_profiles);
+
+            LinearLayout lnLoc,lnPass, lnLang;
+            lnLoc = dialog.findViewById(R.id.linear_edit_location);
+            lnPass = dialog.findViewById(R.id.linear_edit_password);
+            lnLang = dialog.findViewById(R.id.linear_change_language);
+
+            lnLoc.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(ProfileActivity.this, ChangeLocationActivity.class);
+                    i.putExtra("code", "1");
+                    startActivityForResult(i, 1);
+                    dialog.cancel();
+
+                }
+            });
+
+            lnPass.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(ProfileActivity.this, ChangeLocationActivity.class);
+                    i.putExtra("code", "4");
+                    startActivityForResult(i, 4);
+                    dialog.cancel();
+                }
+            });
+
+            lnLang.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(Settings.ACTION_LOCALE_SETTINGS);
+                    startActivity(i);
+                }
+            });
+
+            dialog.setCancelable(true);
+            dialog.show();
     }
 
     private void logoutTukang() {

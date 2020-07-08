@@ -7,15 +7,31 @@
     <application
         android:name=".MyApp"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_new_new"
         android:label="@string/app_name"
         android:networkSecurityConfig="@xml/configurenetwork"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher_new_new_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".profile.DetailFotoActivity"
+        <activity android:name=".profile.ChangeLocationActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppPhoto"/>
+            android:theme="@style/AppThemeNoActBar" ></activity>
+        <activity
+            android:name=".home.ActivitiesActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActBar" />
+        <activity
+            android:name=".home.LastActivitiesActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActBar" />
+        <activity
+            android:name=".notification.DetailNotifikasi.DetailNotifActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActBar" />
+        <activity
+            android:name=".profile.DetailFotoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppPhoto" />
         <activity
             android:name=".profile.ProfileActivity"
             android:screenOrientation="portrait"

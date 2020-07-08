@@ -49,7 +49,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
     }
 
     private void showNotification(String title, String message){
-        String NOTIFICATION_CHANNEL_ID = "my_channel_id_001";
+        String NOTIFICATION_CHANNEL_ID = "my_channel_id_1";
         NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         Random rand = new Random();
         final int notification_ID = rand.nextInt();
@@ -68,12 +68,13 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID);
         builder.setAutoCancel(true)
                 .setDefaults(Notification.DEFAULT_ALL)
-                .setSmallIcon(R.drawable.logo)
+                .setSmallIcon(R.mipmap.ic_launcher_new_new)
                 .setContentTitle(title)
                 .setContentText(message)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .setContentIntent(intent);
+                .setContentIntent(intent)
+                .setStyle(new NotificationCompat.InboxStyle().addLine(message));
 
-        manager.notify(notification_ID,builder.build());
+        manager.notify(notification_ID, builder.build());
     }
 }

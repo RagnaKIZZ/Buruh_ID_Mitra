@@ -2,8 +2,14 @@ package ahmedt.buruhidmitra.utils;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.text.format.DateUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +19,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
@@ -24,9 +31,11 @@ import com.kaopiz.kprogresshud.KProgressHUD;
 import java.text.NumberFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import ahmedt.buruhidmitra.R;
+import ahmedt.buruhidmitra.notification.NotificationActivity;
 
 public class HelperClass {
     public static void expand(LinearLayout mLinearLayout){
@@ -105,6 +114,7 @@ public class HelperClass {
         img.setImageResource(R.drawable.noworker);
         textView.setText(msg);
     }
+
     public static void getDate (Date date, String time, TextView txt){
         long now = System.currentTimeMillis();
         if (Math.abs(now - date.getTime()) > TimeUnit.MINUTES.toMillis(1)) {
@@ -151,5 +161,34 @@ public class HelperClass {
         hud.setCancellable(cancelable);
         hud.setCornerRadius(14);
         hud.show();
+    }
+
+    public static void showNotification(Context ctx, String title, String message){
+        String NOTIFICATION_CHANNEL_ID = "my_channel_id_001";
+        NotificationManager manager = (NotificationManager) ctx.getSystemService(Context.NOTIFICATION_SERVICE);
+        Random rand = new Random();
+        final int notification_ID = rand.nextInt();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "My Notification", NotificationManager.IMPORTANCE_DEFAULT);
+            notificationChannel.setDescription("My Channel");
+            notificationChannel.enableLights(true);
+            notificationChannel.enableVibration(true);
+            manager.createNotificationChannel(notificationChannel);
+        }
+
+        Intent i = new Intent(ctx, NotificationActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent intent = PendingIntent.getActivity(ctx, 1, i, PendingIntent.FLAG_UPDATE_CURRENT);
+//        PendingIntent intent = TaskStackBuilder.create(this).addNextIntentWithParentStack(i).getPendingIntent(1, PendingIntent.FLAG_UPDATE_CURRENT);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(ctx, NOTIFICATION_CHANNEL_ID);
+        builder.setAutoCancel(true)
+                .setDefaults(Notification.DEFAULT_ALL)
+                .setSmallIcon(R.drawable.logo)
+                .setContentTitle(title)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setContentIntent(intent)
+                .setStyle(new NotificationCompat.BigTextStyle().bigText(message));
+
+        manager.notify(notification_ID,builder.build());
     }
 }

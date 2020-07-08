@@ -1,0 +1,627 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".notification.DetailNotifikasi.DetailNotifActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        app:elevation="0dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nest_detail_notif"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:layout_marginEnd="@dimen/_20sdp">
+
+                    <RelativeLayout
+                        android:id="@+id/rl_img1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rounded_yellow">
+
+                        <ImageView
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_centerInParent="true"
+                            android:layout_margin="@dimen/_5sdp"
+                            android:src="@drawable/ic_person_white_24dp" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_toEndOf="@+id/rl_img1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/open_sans"
+                            android:text="Nama customer"
+                            android:textColor="@color/cgray"
+                            android:textSize="@dimen/_10ssp" />
+
+                        <TextView
+                            android:id="@+id/txt_nama_notif"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/open_sans"
+                            android:text="Ahmad Rusdani"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/_12ssp" />
+
+                        <LinearLayout
+                            android:id="@+id/ln_btn_call_customer_notif"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_20sdp"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/btn_call_notif"
+                                style="@style/Widget.AppCompat.Button.Borderless"
+                                android:layout_width="@dimen/_100sdp"
+                                android:layout_height="wrap_content"
+                                android:drawableStart="@drawable/ic_phone_in_talk_black_24dp"
+                                android:fontFamily="@font/open_sans"
+                                android:text="@string/call"
+                                android:textAllCaps="false"
+                                android:textColor="@color/cgray" />
+
+                            <View
+                                android:layout_width="@dimen/_5sdp"
+                                android:layout_height="@dimen/_5sdp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_marginEnd="@dimen/_5sdp"
+                                android:background="@drawable/rounded_gray" />
+
+                            <Button
+                                android:id="@+id/btn_msg_notif"
+                                style="@style/Widget.AppCompat.Button.Borderless"
+                                android:layout_width="@dimen/_100sdp"
+                                android:layout_height="wrap_content"
+                                android:drawableStart="@drawable/ic_message_black_24dp"
+                                android:fontFamily="@font/open_sans"
+                                android:text="@string/message"
+                                android:textAllCaps="false"
+                                android:textColor="@color/cgray" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_20sdp">
+
+                    <RelativeLayout
+                        android:id="@+id/rl_img2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rounded_gray">
+
+                        <ImageView
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_centerInParent="true"
+                            android:layout_margin="@dimen/_5sdp"
+                            android:src="@drawable/ic_work_black_24dp" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_toEndOf="@+id/rl_img2"
+                        android:orientation="vertical">
+
+                        <TableLayout
+                            android:id="@+id/tblTop10List"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:stretchColumns="*">
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_span="2"
+                                    android:fontFamily="@font/open_sans"
+                                    android:text="@string/order_details"
+                                    android:textColor="@color/cgray"
+                                    android:textSize="@dimen/_12ssp" />
+
+                            </TableRow>
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_20sdp">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_span="2"
+                                    android:fontFamily="@font/open_sans"
+                                    android:text="Status"
+                                    android:textColor="@color/cgray"
+                                    android:textSize="@dimen/_10ssp" />
+
+                            </TableRow>
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:id="@+id/txt_status_notif"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_span="2"
+                                    android:fontFamily="@font/open_sans"
+                                    android:text="@string/wait_confirm"
+                                    android:textColor="@android:color/black"
+                                    android:textSize="@dimen/_12ssp" />
+                            </TableRow>
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:weightSum="1">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_column="0"
+                                    android:fontFamily="@font/open_sans"
+                                    android:text="@string/start_date"
+                                    android:textColor="@color/cgray"
+                                    android:textSize="@dimen/_10sdp" />
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_column="1"
+                                    android:fontFamily="@font/open_sans"
+                                    android:text="@string/end_date"
+                                    android:textColor="@color/cgray"
+                                    android:textSize="@dimen/_10sdp" />
+                            </TableRow>
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:weightSum="1">
+
+                                <TextView
+                                    android:id="@+id/txt_start_date_notif"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_column="0"
+                                    android:fontFamily="@font/open_sans"
+                                    android:text="12 Maret 2020"
+                                    android:textColor="@android:color/black"
+                                    android:textSize="@dimen/_12sdp" />
+
+                                <TextView
+                                    android:id="@+id/txt_end_date_notif"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_column="1"
+                                    android:fontFamily="@font/open_sans"
+                                    android:text="13 Maret 2020"
+                                    android:textColor="@android:color/black"
+                                    android:textSize="@dimen/_12sdp" />
+                            </TableRow>
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:weightSum="1">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_column="0"
+                                    android:fontFamily="@font/open_sans"
+                                    android:text="@string/start_hour"
+                                    android:textColor="@color/cgray"
+                                    android:textSize="@dimen/_10sdp" />
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_column="1"
+                                    android:fontFamily="@font/open_sans"
+                                    android:text="@string/total_days"
+                                    android:textColor="@color/cgray"
+                                    android:textSize="@dimen/_10sdp" />
+                            </TableRow>
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:weightSum="1">
+
+                                <TextView
+                                    android:id="@+id/txt_start_hour_notif"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_column="0"
+                                    android:fontFamily="@font/open_sans"
+                                    android:text="13:00"
+                                    android:textColor="@android:color/black"
+                                    android:textSize="@dimen/_12sdp" />
+
+                                <TextView
+                                    android:id="@+id/txt_total_date_notif"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_column="1"
+                                    android:fontFamily="@font/open_sans"
+                                    android:text="3 days"
+                                    android:textColor="@android:color/black"
+                                    android:textSize="@dimen/_12sdp" />
+                            </TableRow>
+
+                            <TableRow
+                                android:id="@+id/row_fin_title"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_5sdp">
+
+                                <TextView
+                                    android:id="@+id/txt_tit_finish_date_notif"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_span="2"
+                                    android:fontFamily="@font/open_sans"
+                                    android:text="Finish date"
+                                    android:textColor="@color/cgray"
+                                    android:textSize="@dimen/_10sdp" />
+                            </TableRow>
+
+                            <TableRow
+                                android:id="@+id/row_fin_desc"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:id="@+id/txt_finish_date_notif"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_span="2"
+                                    android:fontFamily="@font/open_sans"
+                                    android:text="20 Mei 2020"
+                                    android:textColor="@android:color/black"
+                                    android:textSize="@dimen/_12sdp" />
+                            </TableRow>
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_10sdp">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_span="2"
+                                    android:fontFamily="@font/open_sans"
+                                    android:text="@string/job_description"
+                                    android:textColor="@color/cgray"
+                                    android:textSize="@dimen/_10sdp" />
+                            </TableRow>
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:id="@+id/txt_jobdesk_notif"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_span="2"
+                                    android:fontFamily="@font/open_sans"
+                                    android:text="ngecet rumah sama bikin pager"
+                                    android:textColor="@android:color/black"
+                                    android:textSize="@dimen/_12sdp" />
+                            </TableRow>
+                        </TableLayout>
+
+
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_20sdp">
+
+                    <RelativeLayout
+                        android:id="@+id/rl_img3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rounded_green">
+
+                        <ImageView
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_centerInParent="true"
+                            android:layout_margin="@dimen/_5sdp"
+                            android:src="@drawable/ic_location_on_white_24dp" />
+                    </RelativeLayout>
+
+                    <TableLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_toEndOf="@id/rl_img3"
+                        android:stretchColumns="*">
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_span="2"
+                                android:fontFamily="@font/open_sans"
+                                android:text="@string/address"
+                                android:textColor="@color/cgray"
+                                android:textSize="@dimen/_12sdp" />
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/txt_address_notif"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_span="2"
+                                android:fontFamily="@font/open_sans"
+                                android:text="Jl. Kamal Raya no 10L, Cengkareng, Jakarta Barat"
+                                android:textColor="@android:color/black"
+                                android:textSize="@dimen/_12sdp" />
+                        </TableRow>
+                    </TableLayout>
+                </RelativeLayout>
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:stretchColumns="*">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="1">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_column="0"
+                            android:fontFamily="@font/open_sans"
+                            android:text="Harga orderan"
+                            android:textColor="@color/cgray"
+                            android:textSize="@dimen/_12sdp" />
+
+                        <TextView
+                            android:id="@+id/txt_harga_orderan_notif"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_column="1"
+                            android:fontFamily="@font/open_sans"
+                            android:textAlignment="textEnd"
+                            android:textColor="@color/cgray"
+                            android:textSize="@dimen/_12sdp"
+                            tools:text="Rp300.000" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="1">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_column="0"
+                            android:fontFamily="@font/open_sans"
+                            android:text="Potongan"
+                            android:textColor="@color/cgray"
+                            android:textSize="@dimen/_12sdp" />
+
+                        <TextView
+                            android:id="@+id/txt_potongan_orderan_notif"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_column="1"
+                            android:fontFamily="@font/open_sans"
+                            android:textAlignment="textEnd"
+                            android:textColor="@color/cgray"
+                            android:textSize="@dimen/_12sdp"
+                            tools:text="Rp30.000" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="1">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_column="0"
+                            android:fontFamily="@font/open_sans"
+                            android:text="Total Harga"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/_12sdp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txt_total_harga_orderan_notif"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_column="1"
+                            android:fontFamily="@font/open_sans"
+                            android:textAlignment="textEnd"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/_12sdp"
+                            android:textStyle="bold"
+                            tools:text="Rp270.000" />
+                    </TableRow>
+
+                </TableLayout>
+
+                <LinearLayout
+                    android:id="@+id/ln_btn_cancel_help_notif"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btn_cancel_notif"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        android:layout_width="@dimen/_130sdp"
+                        android:layout_height="@dimen/_70sdp"
+                        android:drawableTop="@drawable/ic_cancel_gray_24dp"
+                        android:fontFamily="@font/open_sans"
+                        android:text="@string/cancel_order"
+                        android:textAllCaps="false"
+                        android:textColor="@color/cgray" />
+
+                    <Button
+                        android:id="@+id/btn_help_notif"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        android:layout_width="@dimen/_130sdp"
+                        android:layout_height="@dimen/_70sdp"
+                        android:drawableTop="@drawable/ic_help_outline_gray_24dp"
+                        android:fontFamily="@font/open_sans"
+                        android:text="@string/help"
+                        android:textAllCaps="false"
+                        android:textColor="@color/cgray" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txt_code_order_notif"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:fontFamily="@font/open_sans"
+                    android:text="OR0872831231"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/_12ssp" />
+
+                <Button
+                    android:id="@+id/btn_confirm_notif"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:layout_marginBottom="@dimen/_50sdp"
+                    android:background="@drawable/bg_btn_green"
+                    android:fontFamily="@font/open_sans"
+                    android:padding="@dimen/_10sdp"
+                    android:paddingStart="@dimen/_20sdp"
+                    android:paddingEnd="@dimen/_20sdp"
+                    android:text="Confirmation order"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/_15ssp"
+                    android:textStyle="bold" />
+
+                <com.ncorti.slidetoact.SlideToActView
+                    android:id="@+id/btn_slide_notif"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:layout_marginBottom="@dimen/_50sdp"
+                    android:elevation="@dimen/_2sdp"
+                    app:animation_duration="250"
+                    app:area_margin="@dimen/_5sdp"
+                    app:border_radius="@dimen/_25sdp"
+                    app:inner_color="@android:color/white"
+                    app:outer_color="@color/colorAccent"
+                    app:slider_height="@dimen/_50sdp"
+                    app:slider_locked="false"
+                    app:text="@string/startjob"
+                    app:text_size="@dimen/_15ssp" />
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <include
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_70sdp"
+            layout="@layout/msg_layout"
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+</LinearLayout>

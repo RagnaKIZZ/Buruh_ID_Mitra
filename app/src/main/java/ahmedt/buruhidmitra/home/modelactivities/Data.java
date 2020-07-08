@@ -1,8 +1,11 @@
 package ahmedt.buruhidmitra.home.modelactivities;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
-public class Data{
+public class Data implements Parcelable {
 
 	@SerializedName("end_date")
 	private String endDate;
@@ -42,6 +45,48 @@ public class Data{
 
 	public Data() {
 	}
+
+	protected Data(Parcel in) {
+		endDate = in.readString();
+		orderDate = in.readString();
+		nama = in.readString();
+		jobdesk = in.readString();
+		harga = in.readString();
+		statusPembayaran = in.readString();
+		codeOrder = in.readString();
+		telepon = in.readString();
+		statusOrder = in.readString();
+		id = in.readString();
+		alamat = in.readString();
+		startDate = in.readString();
+	}
+
+	public Data(String endDate, String orderDate, String nama, String jobdesk, String harga, String statusPembayaran, String codeOrder, String telepon, String statusOrder, String id, String alamat, String startDate) {
+		this.endDate = endDate;
+		this.orderDate = orderDate;
+		this.nama = nama;
+		this.jobdesk = jobdesk;
+		this.harga = harga;
+		this.statusPembayaran = statusPembayaran;
+		this.codeOrder = codeOrder;
+		this.telepon = telepon;
+		this.statusOrder = statusOrder;
+		this.id = id;
+		this.alamat = alamat;
+		this.startDate = startDate;
+	}
+
+	public static final Creator<Data> CREATOR = new Creator<Data>() {
+		@Override
+		public Data createFromParcel(Parcel in) {
+			return new Data(in);
+		}
+
+		@Override
+		public Data[] newArray(int size) {
+			return new Data[size];
+		}
+	};
 
 	public void setEndDate(String endDate){
 		this.endDate = endDate;
@@ -137,5 +182,26 @@ public class Data{
 
 	public String getStartDate(){
 		return startDate;
+	}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString(endDate);
+		dest.writeString(orderDate);
+		dest.writeString(nama);
+		dest.writeString(jobdesk);
+		dest.writeString(harga);
+		dest.writeString(statusPembayaran);
+		dest.writeString(codeOrder);
+		dest.writeString(telepon);
+		dest.writeString(statusOrder);
+		dest.writeString(id);
+		dest.writeString(alamat);
+		dest.writeString(startDate);
 	}
 }
